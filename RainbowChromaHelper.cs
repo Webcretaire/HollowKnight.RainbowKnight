@@ -29,7 +29,8 @@ namespace RazerAPI
             //appInfo.SupportedDevice = 
             //    0x01 | // Keyboards
             //    0x02 | // Mice
-            appInfo.SupportedDevice = (0x01 | 0x02);
+            //    0x20   // ChromaLink devices
+            appInfo.SupportedDevice = (0x01 | 0x02 | 0x20);
             //    0x01 | // Utility. (To specifiy this is an utility application)
             //    0x02   // Game. (To specifiy this is a game);
             appInfo.Category = 0x02;
@@ -59,6 +60,8 @@ namespace RazerAPI
         public void PlayBackground()
         {
             PlayAnimation("Background_Keyboard", 0, true);
+            PlayAnimation("Background_Mouse", 0, true);
+            PlayAnimation("Background_ChromaLink", 0, true);
         }
 
         public void PlayFullPinkLoad()
@@ -79,6 +82,8 @@ namespace RazerAPI
         public void PlayRedRing()
         {
             PlayAnimation("RedRing_Keyboard", 320);
+            PlayAnimation("RedRing_Mouse", 320);
+            PlayAnimation("RedRing_ChromaLink", 320);
         }
 
         public void PlayWhiteBars()
@@ -94,6 +99,8 @@ namespace RazerAPI
         public void PlayFullWhite()
         {
             PlayAnimation("FullWhite_Keyboard", 0, true);
+            PlayAnimation("FullWhite_Mouse", 0, true);
+            PlayAnimation("FullWhite_ChromaLink", 0, true);
         }
 
         private void PlayAnimation(string name, int duration, bool loop = false)
