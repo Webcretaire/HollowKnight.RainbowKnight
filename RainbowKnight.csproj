@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{A596487E-E26E-400D-8931-0304FA1694E3}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>RainbowKnight</RootNamespace>
+        <AssemblyName>RainbowKnight</AssemblyName>
+        <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="PlayMaker, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\PlayMaker.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+        <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="ChromaAnimationAPI.cs" />
+        <Compile Include="RainbowKnight.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="RazerErrors.cs" />
+        <Compile Include="RainbowChromaHelper.cs" />
+        <Compile Include="ExecutionPlan.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include=".gitignore" />
+      <Content Include="Animations\Arc1_Keyboard.chroma" />
+      <Content Include="Animations\Arc2_Keyboard.chroma" />
+      <Content Include="Animations\Arc3_ChromaLink.chroma" />
+      <Content Include="Animations\Arc3_Headset.chroma" />
+      <Content Include="Animations\Arc3_Keyboard.chroma" />
+      <Content Include="Animations\Arc3_Keypad.chroma" />
+      <Content Include="Animations\Arc3_Mouse.chroma" />
+      <Content Include="Animations\Arc3_Mousepad.chroma" />
+      <Content Include="Animations\Arc4_Keyboard.chroma" />
+      <Content Include="Animations\Arrow1_Keyboard.chroma" />
+      <Content Include="Animations\BarrelFlash1_Keyboard.chroma" />
+      <Content Include="Animations\BarrelFlash2_Keyboard.chroma" />
+      <Content Include="Animations\BarrelFlash3_Keyboard.chroma" />
+      <Content Include="Animations\BarRightToLeft_Keyboard.chroma" />
+      <Content Include="Animations\BarTopDown_Keyboard.chroma" />
+      <Content Include="Animations\BattleBus_Keyboard.chroma" />
+      <Content Include="Animations\Bird1_Keyboard.chroma" />
+      <Content Include="Animations\BlackAndWhiteRainbow_ChromaLink.chroma" />
+      <Content Include="Animations\BlackAndWhiteRainbow_Headset.chroma" />
+      <Content Include="Animations\BlackAndWhiteRainbow_Keyboard.chroma" />
+      <Content Include="Animations\BlackAndWhiteRainbow_Keypad.chroma" />
+      <Content Include="Animations\BlackAndWhiteRainbow_Mouse.chroma" />
+      <Content Include="Animations\BlackAndWhiteRainbow_Mousepad.chroma" />
+      <Content Include="Animations\Blank2_Keyboard.chroma" />
+      <Content Include="Animations\Blank_ChromaLink.chroma" />
+      <Content Include="Animations\Blank_Headset.chroma" />
+      <Content Include="Animations\Blank_Keyboard.chroma" />
+      <Content Include="Animations\Blank_Keypad.chroma" />
+      <Content Include="Animations\Blank_Mouse.chroma" />
+      <Content Include="Animations\Blank_Mousepad.chroma" />
+      <Content Include="Animations\Block1_Keyboard.chroma" />
+      <Content Include="Animations\Block2_Keyboard.chroma" />
+      <Content Include="Animations\Block3_Keyboard.chroma" />
+      <Content Include="Animations\Block4_Keyboard.chroma" />
+      <Content Include="Animations\Bolt1_Keyboard.chroma" />
+      <Content Include="Animations\Bolt2_Keyboard.chroma" />
+      <Content Include="Animations\Bolt3_Keyboard.chroma" />
+      <Content Include="Animations\Bolt4_Keyboard.chroma" />
+      <Content Include="Animations\Bow1_Keyboard.chroma" />
+      <Content Include="Animations\Chainsaw1_Keyboard.chroma" />
+      <Content Include="Animations\Chest1_Keyboard.chroma" />
+      <Content Include="Animations\Cinematic1_Keyboard.chroma" />
+      <Content Include="Animations\Cinematic2_Keyboard.chroma" />
+      <Content Include="Animations\Cinematic3_Keyboard.chroma" />
+      <Content Include="Animations\CircleExpanding_Keyboard.chroma" />
+      <Content Include="Animations\CircleLarge2_Keyboard.chroma" />
+      <Content Include="Animations\CircleLargeLeft_Keyboard.chroma" />
+      <Content Include="Animations\CircleLargeRight_Keyboard.chroma" />
+      <Content Include="Animations\CircleLarge_Keyboard.chroma" />
+      <Content Include="Animations\CircleSmallLeft_Keyboard.chroma" />
+      <Content Include="Animations\CircleSmallRight_Keyboard.chroma" />
+      <Content Include="Animations\CircleSmall_ChromaLink.chroma" />
+      <Content Include="Animations\CircleSmall_Headset.chroma" />
+      <Content Include="Animations\CircleSmall_Keyboard.chroma" />
+      <Content Include="Animations\CircleSmall_Mouse.chroma" />
+      <Content Include="Animations\CircleSmall_Mousepad.chroma" />
+      <Content Include="Animations\Claws1_Keyboard.chroma" />
+      <Content Include="Animations\Clouds1_ChromaLink.chroma" />
+      <Content Include="Animations\Clouds1_Headset.chroma" />
+      <Content Include="Animations\Clouds1_Keyboard.chroma" />
+      <Content Include="Animations\Clouds1_Mouse.chroma" />
+      <Content Include="Animations\Clouds1_Mousepad.chroma" />
+      <Content Include="Animations\Clouds2_Keyboard.chroma" />
+      <Content Include="Animations\Clouds3_Keyboard.chroma" />
+      <Content Include="Animations\Damage1_Keyboard.chroma" />
+      <Content Include="Animations\Damage2_Keyboard.chroma" />
+      <Content Include="Animations\Damage3_Keyboard.chroma" />
+      <Content Include="Animations\Damage4_Keyboard.chroma" />
+      <Content Include="Animations\Damage5_Keyboard.chroma" />
+      <Content Include="Animations\Damage6_Keyboard.chroma" />
+      <Content Include="Animations\Damage7_Keyboard.chroma" />
+      <Content Include="Animations\Damage8_Keyboard.chroma" />
+      <Content Include="Animations\Dragon1_Keyboard.chroma" />
+      <Content Include="Animations\Dragon2_Keyboard.chroma" />
+      <Content Include="Animations\Dragon3_Keyboard.chroma" />
+      <Content Include="Animations\Energy1_Keyboard.chroma" />
+      <Content Include="Animations\Fireball1_Keyboard.chroma" />
+      <Content Include="Animations\Fork1_Keyboard.chroma" />
+      <Content Include="Animations\Fork2_Keyboard.chroma" />
+      <Content Include="Animations\Fork3_Keyboard.chroma" />
+      <Content Include="Animations\Fork4_Keyboard.chroma" />
+      <Content Include="Animations\Fork5_Keyboard.chroma" />
+      <Content Include="Animations\FreeFall1_Keyboard.chroma" />
+      <Content Include="Animations\FreeFall2_Keyboard.chroma" />
+      <Content Include="Animations\Glider1_Keyboard.chroma" />
+      <Content Include="Animations\Glider2_Keyboard.chroma" />
+      <Content Include="Animations\Hatchet_Keyboard.chroma" />
+      <Content Include="Animations\Heart1_Keyboard.chroma" />
+      <Content Include="Animations\Hemisphere1_Keyboard.chroma" />
+      <Content Include="Animations\Hemisphere2_Keyboard.chroma" />
+      <Content Include="Animations\Ladder1_Keyboard.chroma" />
+      <Content Include="Animations\Ladder2_Keyboard.chroma" />
+      <Content Include="Animations\LaserA_Keyboard.chroma" />
+      <Content Include="Animations\LaserB_Keyboard.chroma" />
+      <Content Include="Animations\LaserRotate_Keyboard.chroma" />
+      <Content Include="Animations\LaserScroll_Keyboard.chroma" />
+      <Content Include="Animations\Lightning1_Keyboard.chroma" />
+      <Content Include="Animations\Lightning2_Keyboard.chroma" />
+      <Content Include="Animations\Lightning3_Keyboard.chroma" />
+      <Content Include="Animations\Llama1_Keyboard.chroma" />
+      <Content Include="Animations\Llama2_Keyboard.chroma" />
+      <Content Include="Animations\Llama3_Keyboard.chroma" />
+      <Content Include="Animations\Llama4_Keyboard.chroma" />
+      <Content Include="Animations\Logo1_Keyboard.chroma" />
+      <Content Include="Animations\Logo2_Keyboard.chroma" />
+      <Content Include="Animations\MachineGun1_Keyboard.chroma" />
+      <Content Include="Animations\MachineGun2_Keyboard.chroma" />
+      <Content Include="Animations\Melee1_Keyboard.chroma" />
+      <Content Include="Animations\Missile1_Keyboard.chroma" />
+      <Content Include="Animations\Missile2_Keyboard.chroma" />
+      <Content Include="Animations\Missile3_Keyboard.chroma" />
+      <Content Include="Animations\MovementUpLeft_ChromaLink.chroma" />
+      <Content Include="Animations\MovementUpLeft_Headset.chroma" />
+      <Content Include="Animations\MovementUpLeft_Keyboard.chroma" />
+      <Content Include="Animations\MovementUpLeft_Mouse.chroma" />
+      <Content Include="Animations\MovementUpLeft_Mousepad.chroma" />
+      <Content Include="Animations\MovementUpRight_Keyboard.chroma" />
+      <Content Include="Animations\Movement_ChromaLink.chroma" />
+      <Content Include="Animations\Movement_Headset.chroma" />
+      <Content Include="Animations\Movement_Keyboard.chroma" />
+      <Content Include="Animations\Movement_Keypad.chroma" />
+      <Content Include="Animations\Movement_Mouse.chroma" />
+      <Content Include="Animations\Movement_Mousepad.chroma" />
+      <Content Include="Animations\OpenDoor1_Keyboard.chroma" />
+      <Content Include="Animations\OpenDoor2_Keyboard.chroma" />
+      <Content Include="Animations\OutParticle1_ChromaLink.chroma" />
+      <Content Include="Animations\OutParticle1_Headset.chroma" />
+      <Content Include="Animations\OutParticle1_Keyboard.chroma" />
+      <Content Include="Animations\OutParticle1_Mouse.chroma" />
+      <Content Include="Animations\OutParticle1_Mousepad.chroma" />
+      <Content Include="Animations\Particle1_Keyboard.chroma" />
+      <Content Include="Animations\Particle2_Keyboard.chroma" />
+      <Content Include="Animations\Particle3_Keyboard.chroma" />
+      <Content Include="Animations\Particles2_ChromaLink.chroma" />
+      <Content Include="Animations\Particles2_Headset.chroma" />
+      <Content Include="Animations\Particles2_Keyboard.chroma" />
+      <Content Include="Animations\Particles2_Keypad.chroma" />
+      <Content Include="Animations\Particles2_Mouse.chroma" />
+      <Content Include="Animations\Particles2_Mousepad.chroma" />
+      <Content Include="Animations\ParticlesOut_ChromaLink.chroma" />
+      <Content Include="Animations\ParticlesOut_Headset.chroma" />
+      <Content Include="Animations\ParticlesOut_Keyboard.chroma" />
+      <Content Include="Animations\ParticlesOut_Keypad.chroma" />
+      <Content Include="Animations\ParticlesOut_Mouse.chroma" />
+      <Content Include="Animations\ParticlesOut_Mousepad.chroma" />
+      <Content Include="Animations\ParticleTrail1_Keyboard.chroma" />
+      <Content Include="Animations\ParticleTrail2_Keyboard.chroma" />
+      <Content Include="Animations\ParticleTrail3_Keyboard.chroma" />
+      <Content Include="Animations\ParticleTrail4_Keyboard.chroma" />
+      <Content Include="Animations\Projectiles_Keyboard.chroma" />
+      <Content Include="Animations\Rain1_Keyboard.chroma" />
+      <Content Include="Animations\Rainbow_ChromaLink.chroma" />
+      <Content Include="Animations\Rainbow_Headset.chroma" />
+      <Content Include="Animations\Rainbow_Keyboard.chroma" />
+      <Content Include="Animations\Rainbow_Keypad.chroma" />
+      <Content Include="Animations\Rainbow_Mouse.chroma" />
+      <Content Include="Animations\Rainbow_Mousepad.chroma" />
+      <Content Include="Animations\Ray1_Keyboard.chroma" />
+      <Content Include="Animations\Ray2_Keyboard.chroma" />
+      <Content Include="Animations\ReactiveSpace_Keyboard.chroma" />
+      <Content Include="Animations\Reticle1_Keyboard.chroma" />
+      <Content Include="Animations\Reticle2_Keyboard.chroma" />
+      <Content Include="Animations\Reticle3_Keyboard.chroma" />
+      <Content Include="Animations\Reticle4_Keyboard.chroma" />
+      <Content Include="Animations\Ring1_Keyboard.chroma" />
+      <Content Include="Animations\Ring2_Keyboard.chroma" />
+      <Content Include="Animations\Ring3_Keyboard.chroma" />
+      <Content Include="Animations\RocketProjectile1_Keyboard.chroma" />
+      <Content Include="Animations\Search1_Keyboard.chroma" />
+      <Content Include="Animations\Search2_Keyboard.chroma" />
+      <Content Include="Animations\Search3_Keyboard.chroma" />
+      <Content Include="Animations\Search4_Keyboard.chroma" />
+      <Content Include="Animations\SearchLight1_Keyboard.chroma" />
+      <Content Include="Animations\Spiral_Keyboard.chroma" />
+      <Content Include="Animations\Spray1_Keyboard.chroma" />
+      <Content Include="Animations\Spray2_Keyboard.chroma" />
+      <Content Include="Animations\Spray3_Keyboard.chroma" />
+      <Content Include="Animations\Sprite1_ChromaLink.chroma" />
+      <Content Include="Animations\Sprite1_Headset.chroma" />
+      <Content Include="Animations\Sprite1_Keyboard.chroma" />
+      <Content Include="Animations\Sprite1_Keypad.chroma" />
+      <Content Include="Animations\Sprite1_Mouse.chroma" />
+      <Content Include="Animations\Sprite1_Mousepad.chroma" />
+      <Content Include="Animations\Star_Keyboard.chroma" />
+      <Content Include="Animations\Stripes1_Keyboard.chroma" />
+      <Content Include="Animations\Sword1_Keyboard.chroma" />
+      <Content Include="Animations\ThrowUpLeft_Keyboard.chroma" />
+      <Content Include="Animations\ThrowUpRight_Keyboard.chroma" />
+      <Content Include="Animations\ThrowUp_Keyboard.chroma" />
+      <Content Include="Animations\Tongue1_ChromaLink.chroma" />
+      <Content Include="Animations\Tongue1_Headset.chroma" />
+      <Content Include="Animations\Tongue1_Keyboard.chroma" />
+      <Content Include="Animations\Tongue1_Mouse.chroma" />
+      <Content Include="Animations\Tongue1_Mousepad.chroma" />
+      <Content Include="Animations\Tornado1_Keyboard.chroma" />
+      <Content Include="Animations\Trail1_Keyboard.chroma" />
+      <Content Include="Animations\Trail2_Keyboard.chroma" />
+      <Content Include="Animations\Trail3_Keyboard.chroma" />
+      <Content Include="Animations\Trails_ChromaLink.chroma" />
+      <Content Include="Animations\Trails_Headset.chroma" />
+      <Content Include="Animations\Trails_Keyboard.chroma" />
+      <Content Include="Animations\Trails_Keypad.chroma" />
+      <Content Include="Animations\Trails_Mouse.chroma" />
+      <Content Include="Animations\Trails_Mousepad.chroma" />
+      <Content Include="Animations\Train1_Keyboard.chroma" />
+      <Content Include="Animations\Train2_Keyboard.chroma" />
+      <Content Include="Animations\Travel1_Keyboard.chroma" />
+      <Content Include="Animations\UpParticle1_Keyboard.chroma" />
+      <Content Include="Animations\UpParticle2_Keyboard.chroma" />
+      <Content Include="Animations\UpParticle3_Keyboard.chroma" />
+      <Content Include="Animations\WindMill1_Keyboard.chroma" />
+      <Content Include="Animations\Wisp1_Keyboard.chroma" />
+      <Content Include="Animations\Wisp2_Keyboard.chroma" />
+      <Content Include="Animations\Wisp3_Keyboard.chroma" />
+      <Content Include="Animations\WispBuild_Keyboard.chroma" />
+      <Content Include="Animations\WispLarge_Keyboard.chroma" />
+      <Content Include="Animations\X1_Keyboard.chroma" />
+      <Content Include="Animations\X2_Keyboard.chroma" />
+      <Content Include="Animations\XOutline_Keyboard.chroma" />
+      <Content Include="Animations\X_Keyboard.chroma" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
