@@ -66,7 +66,7 @@ namespace RazerAPI
 
         public void PlayFullPinkLoad()
         {
-            PlayAnimation("FullPinkLoad_Keyboard", 10000);
+            PlayAnimation("FullPinkLoad_Keyboard", 0);
         }
         
         public void PlayFullPinkFlash()
