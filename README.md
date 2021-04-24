@@ -1,5 +1,7 @@
 # RainbowKnight
 
+*[Preview of the effetcs implemented so far](https://www.youtube.com/watch?v=FNZI_AMrrO0)* 
+
 This Hollow Knight mod adds support for Razer Chroma devices, by allowing RGB lighting to react to a variety of in-game events, such as as casting a spell, getting hit, benching, (crystal-)dashing, etc.
 
 So far it only supports keyboards, but more peripherals should come soon.
