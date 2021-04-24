@@ -20,11 +20,11 @@ namespace RazerAPI
         public void Start()
         {
             APPINFOTYPE appInfo = new APPINFOTYPE();
-            appInfo.Title = "Razer Chroma CSharp Sample Application";
-            appInfo.Description = "A sample application using Razer Chroma SDK";
+            appInfo.Title = "RainbowKnight";
+            appInfo.Description = "Hollow Knight RainbowKnight mod";
 
-            appInfo.Author_Name = "Razer";
-            appInfo.Author_Contact = "https://developer.razer.com/chroma";
+            appInfo.Author_Name = "Webcretaire";
+            appInfo.Author_Contact = "https://github.com/Webcretaire/HollowKnight.RainbowKnight";
 
             //appInfo.SupportedDevice = 
             //    0x01 | // Keyboards
@@ -58,14 +58,7 @@ namespace RazerAPI
 
         public void PlayBackground()
         {
-            // start with a blank animation
-            string baseLayer = ANIMATION_PATH + "/Background_Keyboard.chroma";
-            // close the blank animation if it's already loaded, discarding any changes
-            ChromaAnimationAPI.CloseAnimationName(baseLayer);
-            // open the blank animation, passing a reference to the base animation when loading has completed
-            ChromaAnimationAPI.GetAnimation(baseLayer);
-            // play the animation on the dynamic canvas
-            ChromaAnimationAPI.PlayAnimationName(baseLayer, true);
+            PlayAnimation("Background_Keyboard", 0, true);
         }
 
         public void PlayFullPinkLoad()
