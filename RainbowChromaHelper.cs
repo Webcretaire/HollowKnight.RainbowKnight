@@ -67,16 +67,22 @@ namespace RazerAPI
         public void PlayFullPinkLoad()
         {
             PlayAnimation("FullPinkLoad_Keyboard", 0);
+            PlayAnimation("FullPinkLoad_Mouse", 0);
+            PlayAnimation("FullPinkLoad_ChromaLink", 0);
         }
         
         public void PlayFullPinkFlash()
         {
-            PlayAnimation("FullPinkFlash_Keyboard", 1500, true);
+            PlayAnimation("FullPinkFlash_Keyboard", 0, true);
+            PlayAnimation("FullPinkFlash_Mouse", 0, true);
+            PlayAnimation("FullPinkFlash_ChromaLink", 0, true);
         }
         
         public void PlayColouredRing()
         {
-            PlayAnimation("ColouredRing_Keyboard", 270);
+            PlayAnimation("ColouredRing_Keyboard", 0, true);
+            PlayAnimation("ColouredRing_Mouse", 0, true);
+            PlayAnimation("ColouredRing_ChromaLink", 0, true);
         }
 
         public void PlayRedRing()
@@ -89,11 +95,15 @@ namespace RazerAPI
         public void PlayWhiteBars()
         {
             PlayAnimation("WhiteBars_Keyboard", 231);
+            PlayAnimation("WhiteBars_Mouse", 231);
+            PlayAnimation("WhiteBars_ChromaLink", 231);
         }
 
         public void PlayFullRed()
         {
             PlayAnimation("FullRed_Keyboard", 3000);
+            PlayAnimation("FullRed_Mouse", 3000);
+            PlayAnimation("FullRed_ChromaLink", 3000);
         }
 
         public void PlayFullWhite()
