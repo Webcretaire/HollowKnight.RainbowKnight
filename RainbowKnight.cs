@@ -134,6 +134,15 @@ namespace RainbowKnight
                 _chromaHelper.PlayFullWhite
             );
         }
+        
+        private bool UpdateDoubleJumpState()
+        {
+            return BooleanAnimationUpdate(
+                HeroController.instance.cState.bouncing || HeroController.instance.cState.doubleJumping,
+                "Double_Jumping",
+                _chromaHelper.PlayWhiteBars
+            );
+        }
 
         private void OnHeroUpdate()
         {
@@ -145,6 +154,7 @@ namespace RainbowKnight
             // These "if → return" make sure we only trigger one animation per cycle.
             // Not that there is anything wrong with triggering several, but it allows to set a priority for which
             // animation should be triggered if its state is active
+            if (UpdateDoubleJumpState()) return;
             if (UpdateCrystalDashFlyState()) return;
             if (UpdateCrystalDashLoadState()) return;
             if (UpdateSpellState()) return;
