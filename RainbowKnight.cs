@@ -11,9 +11,9 @@ namespace RainbowKnight
     {
         private RainbowChromaHelper _chromaHelper;
 
-        private readonly Dictionary<string, bool> _cooldownState = new Dictionary<string, bool>();
+        private readonly Dictionary<string, bool> _animState = new Dictionary<string, bool>();
 
-        private bool _chargingSuperDash;
+        private bool _stateRequestsBackground;
 
         private int _frameCount;
 
@@ -48,30 +48,33 @@ namespace RainbowKnight
             _chromaHelper.PlayBackground();
         }
 
-        private void BooleanAnimationUpdate(bool condition, string state, Action animation)
+        /// <summary>
+        /// Triggers or stops an animation when the condition is toggled
+        /// </summary>
+        /// <param name="condition">Condition to test</param>
+        /// <param name="state">An arbitrary string key to differentiate calls to this function</param>
+        /// <param name="animation">The animation to be triggered when `condition` becomes true</param>
+        /// <returns>true if the animation was triggered, false if nothing was done or Background was resumed</returns>
+        private bool BooleanAnimationUpdate(bool condition, string state, Action animation)
         {
-            var stateActive = _cooldownState.ContainsKey(state) && _cooldownState[state];
+            var stateActive = _animState.ContainsKey(state) && _animState[state];
 
             switch (condition)
             {
                 case true when !stateActive:
-                    _cooldownState[state] = true;
+                    LogDebug("Triggering " + state + " animation");
+                    _animState[state] = true;
+                    _stateRequestsBackground = false; // Cancel any in-progress "background resume" request
                     animation();
-                    return;
+                    return true;
                 case false when stateActive:
-                    _cooldownState[state] = false;
-                    _chromaHelper.PlayBackground();
-                    return;
+                    LogDebug("Requesting background resume " + state + " ended");
+                    _animState[state] = false;
+                    _stateRequestsBackground = true;
+                    return false;
             }
-        }
 
-        private void ConditionalCooledDownExecution(string target, Action callback, int cooldown = 1000)
-        {
-            if (_cooldownState.ContainsKey(target) && _cooldownState[target]) return;
-
-            _cooldownState[target] = true;
-            ExecutionPlan.Delay(cooldown, () => _cooldownState[target] = false);
-            callback();
+            return false;
         }
 
         private string OnLanguageGet(string key, string sheet)
@@ -83,37 +86,30 @@ namespace RainbowKnight
             return Language.Language.GetInternal(key, sheet);
         }
 
-        private void UpdateCrystalDashState()
+        private bool UpdateCrystalDashLoadState()
         {
-            var cDashState = HeroController.instance.superDash.ActiveStateName;
-
-            switch (cDashState)
-            {
-                // We are charging a C-dash
-                case "Ground Charge":
-                case "Ground Charged":
-                case "Wall Charge":
-                case "Wall Charged":
-                    _chargingSuperDash = true;
-                    ConditionalCooledDownExecution("CDash_charge", _chromaHelper.PlayFullPinkLoad, 2000);
-                    return;
-                // We are in a C-dash (inflight, not charging)
-                case "Dashing":
-                case "Cancelable":
-                    _chargingSuperDash = false;
-                    ConditionalCooledDownExecution("CDash_inflight", _chromaHelper.PlayFullPinkFlash, 800);
-                    return;
-                // C-dash was probably being charged but was canceled, so stop its animation
-                case "Inactive" when _chargingSuperDash:
-                    _chargingSuperDash = false;
-                    _chromaHelper.PlayBackground();
-                    return;
-            }
+            return BooleanAnimationUpdate(
+                HeroController.instance.superDash.ActiveStateName.StartsWith("Ground Charge") ||
+                HeroController.instance.superDash.ActiveStateName.StartsWith("Wall Charge"),
+                "Cdash_charge",
+                _chromaHelper.PlayFullPinkLoad
+            );
         }
 
-        private void UpdateSpellState()
+
+        private bool UpdateCrystalDashFlyState()
         {
-            BooleanAnimationUpdate(
+            return BooleanAnimationUpdate(
+                HeroController.instance.superDash.ActiveStateName == "Dashing" ||
+                HeroController.instance.superDash.ActiveStateName == "Cancelable",
+                "Cdash_fly",
+                _chromaHelper.PlayFullPinkFlash
+            );
+        }
+
+        private bool UpdateSpellState()
+        {
+            return BooleanAnimationUpdate(
                 HeroController.instance.spellControl.ActiveStateName != "Inactive" &&
                 HeroController.instance.spellControl.ActiveStateName != "Button Down",
                 "Spell",
@@ -121,18 +117,18 @@ namespace RainbowKnight
             );
         }
 
-        private void UpdateBenchState()
+        private bool UpdateBenchState()
         {
-            BooleanAnimationUpdate(
+            return BooleanAnimationUpdate(
                 HeroController.instance.playerData.atBench,
                 "Benching",
                 _chromaHelper.PlayFullWhite
             );
         }
 
-        private void UpdateNailChargeState()
+        private bool UpdateNailChargeState()
         {
-            BooleanAnimationUpdate(
+            return BooleanAnimationUpdate(
                 HeroController.instance.cState.nailCharging,
                 "Nail_charging",
                 _chromaHelper.PlayFullWhite
@@ -145,11 +141,25 @@ namespace RainbowKnight
             if (++_frameCount < 10) return;
 
             _frameCount = 0;
-            
-            UpdateCrystalDashState();
-            UpdateSpellState();
-            UpdateBenchState();
-            UpdateNailChargeState();
+
+            // These "if → return" make sure we only trigger one animation per cycle.
+            // Not that there is anything wrong with triggering several, but it allows to set a priority for which
+            // animation should be triggered if its state is active
+            if (UpdateCrystalDashFlyState()) return;
+            if (UpdateCrystalDashLoadState()) return;
+            if (UpdateSpellState()) return;
+            if (UpdateNailChargeState()) return;
+            if (UpdateBenchState()) return;
+
+            // Resuming the background should have the absolute lowest priority, which is why we don't resume it in
+            // each `Update*` function directly, but only ask for it to be resumed (which might end up not being 
+            // necessary if another animation needs to run instead)
+            if (_stateRequestsBackground && !_animState.ContainsValue(true))
+            {
+                LogDebug("Effectively resuming background animation");
+                _stateRequestsBackground = false;
+                _chromaHelper.PlayBackground();
+            }
         }
 
         private void OnPlayerDead()
