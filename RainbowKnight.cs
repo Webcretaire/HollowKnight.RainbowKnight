@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using ChromaSDK;
 using Modding;
 using RazerAPI;
-using UnityEngine;
 
 namespace RainbowKnight
 {
@@ -23,7 +22,7 @@ namespace RainbowKnight
 
         public override string GetVersion()
         {
-            return "0.1.0";
+            return "0.2.0";
         }
 
         public override void Initialize()
