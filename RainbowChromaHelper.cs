@@ -59,58 +59,49 @@ namespace RazerAPI
 
         public void PlayBackground()
         {
-            PlayAnimation("Background_Keyboard", 0, true);
-            PlayAnimation("Background_Mouse", 0, true);
-            PlayAnimation("Background_ChromaLink", 0, true);
+            PlayAnimationAllDevices("Background", 0, true);
         }
 
         public void PlayFullPinkLoad()
         {
-            PlayAnimation("FullPinkLoad_Keyboard", 0);
-            PlayAnimation("FullPinkLoad_Mouse", 0);
-            PlayAnimation("FullPinkLoad_ChromaLink", 0);
+            PlayAnimationAllDevices("FullPinkLoad", 0);
         }
         
         public void PlayFullPinkFlash()
         {
-            PlayAnimation("FullPinkFlash_Keyboard", 0, true);
-            PlayAnimation("FullPinkFlash_Mouse", 0, true);
-            PlayAnimation("FullPinkFlash_ChromaLink", 0, true);
+            PlayAnimationAllDevices("FullPinkFlash", 0, true);
         }
         
         public void PlayColouredRing()
         {
-            PlayAnimation("ColouredRing_Keyboard", 0, true);
-            PlayAnimation("ColouredRing_Mouse", 0, true);
-            PlayAnimation("ColouredRing_ChromaLink", 0, true);
+            PlayAnimationAllDevices("ColouredRing", 0, true);
         }
 
         public void PlayRedRing()
         {
-            PlayAnimation("RedRing_Keyboard", 320);
-            PlayAnimation("RedRing_Mouse", 320);
-            PlayAnimation("RedRing_ChromaLink", 320);
+            PlayAnimationAllDevices("RedRing", 320);
         }
 
         public void PlayWhiteBars()
         {
-            PlayAnimation("WhiteBars_Keyboard", 231);
-            PlayAnimation("WhiteBars_Mouse", 231);
-            PlayAnimation("WhiteBars_ChromaLink", 231);
+            PlayAnimationAllDevices("WhiteBars", 231);
         }
 
         public void PlayFullRed()
         {
-            PlayAnimation("FullRed_Keyboard", 3000);
-            PlayAnimation("FullRed_Mouse", 3000);
-            PlayAnimation("FullRed_ChromaLink", 3000);
+            PlayAnimationAllDevices("FullRed", 3000);
         }
 
         public void PlayFullWhite()
         {
-            PlayAnimation("FullWhite_Keyboard", 0, true);
-            PlayAnimation("FullWhite_Mouse", 0, true);
-            PlayAnimation("FullWhite_ChromaLink", 0, true);
+            PlayAnimationAllDevices("FullWhite", 0, true);
+        }
+
+        private void PlayAnimationAllDevices(string name, int duration, bool loop = false)
+        {
+            PlayAnimation(name + "_Keyboard", duration, loop);
+            PlayAnimation(name + "_Mouse", duration, loop);
+            PlayAnimation(name + "_ChromaLink", duration, loop);
         }
 
         private void PlayAnimation(string name, int duration, bool loop = false)
