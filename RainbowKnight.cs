@@ -38,7 +38,6 @@ namespace RainbowKnight
             Log("Razer SDK init: " + RazerErrors.GetResultString(_chromaHelper.GetInitResult()));
 
             ModHooks.Instance.TakeHealthHook += OnTakeHealth;
-            ModHooks.Instance.DashPressedHook += OnDashPressed;
             ModHooks.Instance.BeforePlayerDeadHook += OnPlayerDead;
             ModHooks.Instance.ApplicationQuitHook += OnApplicationQuit;
             ModHooks.Instance.HeroUpdateHook += OnHeroUpdate;
@@ -99,8 +98,7 @@ namespace RainbowKnight
         private bool UpdateCrystalDashFlyState()
         {
             return BooleanAnimationUpdate(
-                HeroController.instance.superDash.ActiveStateName == "Dashing" ||
-                HeroController.instance.superDash.ActiveStateName == "Cancelable",
+                HeroController.instance.cState.superDashing,
                 "Cdash_fly",
                 _chromaHelper.PlayFullPinkFlash
             );
@@ -133,11 +131,13 @@ namespace RainbowKnight
                 _chromaHelper.PlayFullWhite
             );
         }
-        
-        private bool UpdateDoubleJumpState()
+
+        private bool UpdateMovementState()
         {
             return BooleanAnimationUpdate(
-                HeroController.instance.cState.bouncing || HeroController.instance.cState.doubleJumping,
+                HeroController.instance.cState.bouncing ||
+                HeroController.instance.cState.doubleJumping ||
+                HeroController.instance.cState.dashing,
                 "Double_Jumping",
                 _chromaHelper.PlayWhiteBars
             );
@@ -153,7 +153,7 @@ namespace RainbowKnight
             // These "if → return" make sure we only trigger one animation per cycle.
             // Not that there is anything wrong with triggering several, but it allows to set a priority for which
             // animation should be triggered if its state is active
-            if (UpdateDoubleJumpState()) return;
+            if (UpdateMovementState()) return;
             if (UpdateCrystalDashFlyState()) return;
             if (UpdateCrystalDashLoadState()) return;
             if (UpdateSpellState()) return;
@@ -187,12 +187,6 @@ namespace RainbowKnight
         {
             _chromaHelper.PlayRedRing();
             return damage;
-        }
-
-        private bool OnDashPressed()
-        {
-            _chromaHelper.PlayWhiteBars();
-            return false;
         }
     }
 }
