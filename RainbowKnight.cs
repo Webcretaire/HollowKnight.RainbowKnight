@@ -29,8 +29,10 @@ namespace RainbowKnight
         {
             Log("Start RainbowKnight Init");
 
-            Environment.SetEnvironmentVariable("PATH",
-                Environment.GetEnvironmentVariable("PATH") + ";hollow_knight_Data\\Managed\\Mods\\RainbowKnight");
+            Environment.SetEnvironmentVariable(
+                "PATH",
+                Environment.GetEnvironmentVariable("PATH") + ";hollow_knight_Data\\Managed\\Mods\\RainbowKnight"
+            );
 
             _chromaHelper = new RainbowChromaHelper();
             _chromaHelper.Start();
