@@ -66,15 +66,15 @@ namespace RazerAPI
         {
             PlayAnimationAllDevices("FullPinkLoad", 0);
         }
-        
+
         public void PlayFullPinkFlash()
         {
             PlayAnimationAllDevices("FullPinkFlash", 0, true);
         }
-        
+
         public void PlayColouredRing()
         {
-            PlayAnimationAllDevices("ColouredRing", 0, true);
+            PlayAnimationAllDevices("ColouredRing", 5000, true);
         }
 
         public void PlayRedRing()
