@@ -1,10 +1,11 @@
-using ChromaSDK;
 using System;
+using ChromaSDK;
+using Modding;
 using RainbowKnight;
 
 namespace RazerAPI
 {
-    public class RainbowChromaHelper
+    public class RainbowChromaHelper : Loggable
     {
         public const string ANIMATION_PATH = "hollow_knight_Data/Managed/Mods/RainbowKnight/Animations";
 
@@ -17,44 +18,49 @@ namespace RazerAPI
             return _mResult;
         }
 
-        public void Start()
+        public bool Start()
         {
-            APPINFOTYPE appInfo = new APPINFOTYPE();
-            appInfo.Title = "RainbowKnight";
-            appInfo.Description = "Hollow Knight RainbowKnight mod";
-
-            appInfo.Author_Name = "Webcretaire";
-            appInfo.Author_Contact = "https://github.com/Webcretaire/HollowKnight.RainbowKnight";
-
-            //appInfo.SupportedDevice = 
-            //    0x01 | // Keyboards
-            //    0x02 | // Mice
-            //    0x20   // ChromaLink devices
-            appInfo.SupportedDevice = (0x01 | 0x02 | 0x20);
-            //    0x01 | // Utility. (To specifiy this is an utility application)
-            //    0x02   // Game. (To specifiy this is a game);
-            appInfo.Category = 0x02;
-            _mResult = ChromaAnimationAPI.InitSDK(ref appInfo);
-            switch (_mResult)
+            try
             {
-                case RazerErrors.RZRESULT_DLL_NOT_FOUND:
-                    Console.Error.WriteLine("Chroma DLL is not found! {0}", RazerErrors.GetResultString(_mResult));
-                    break;
-                case RazerErrors.RZRESULT_DLL_INVALID_SIGNATURE:
-                    Console.Error.WriteLine("Chroma DLL has an invalid signature! {0}",
-                        RazerErrors.GetResultString(_mResult));
-                    break;
-                case RazerErrors.RZRESULT_SUCCESS:
-                    break;
-                default:
-                    Console.Error.WriteLine("Failed to initialize Chroma! {0}", RazerErrors.GetResultString(_mResult));
-                    break;
+                var appInfo = new APPINFOTYPE
+                {
+                    Title = "RainbowKnight",
+                    Description = "Hollow Knight RainbowKnight mod",
+                    Author_Name = "Webcretaire",
+                    Author_Contact = "https://github.com/Webcretaire/HollowKnight.RainbowKnight",
+                    SupportedDevice = (int) ChromaAnimationAPI.Device.Keyboard |
+                                      (int) ChromaAnimationAPI.Device.Mouse |
+                                      (int) ChromaAnimationAPI.Device.ChromaLink,
+                    Category = 0x02 // 0x01 = Utility ; 0x02 = Game
+                };
+
+                _mResult = ChromaAnimationAPI.InitSDK(ref appInfo);
+                switch (_mResult)
+                {
+                    case RazerErrors.RZRESULT_DLL_NOT_FOUND:
+                        LogError("Chroma DLL is not found! " + RazerErrors.GetResultString(_mResult));
+                        return false;
+                    case RazerErrors.RZRESULT_DLL_INVALID_SIGNATURE:
+                        LogError("Chroma DLL has an invalid signature! " + RazerErrors.GetResultString(_mResult));
+                        return false;
+                    case RazerErrors.RZRESULT_SUCCESS:
+                        return true;
+                    default:
+                        LogError("Failed to initialize Chroma! " + RazerErrors.GetResultString(_mResult));
+                        return false;
+                }
+            }
+            catch (Exception e)
+            {
+                LogError("Error during Chroma Helper Start: " + e.Message);
+                return false;
             }
         }
 
         public void OnApplicationQuit()
         {
-            ChromaAnimationAPI.Uninit();
+            if (ChromaAnimationAPI.IsInitialized())
+                ChromaAnimationAPI.Uninit();
         }
 
         public void PlayBackground()
@@ -112,14 +118,7 @@ namespace RazerAPI
                 _scheduledBackground = null;
             }
 
-            // start with a blank animation
-            string baseLayer = ANIMATION_PATH + "/" + name + ".chroma";
-            // close the blank animation if it's already loaded, discarding any changes
-            ChromaAnimationAPI.CloseAnimationName(baseLayer);
-            // open the blank animation, passing a reference to the base animation when loading has completed
-            ChromaAnimationAPI.GetAnimation(baseLayer);
-            // play the animation on the dynamic canvas
-            ChromaAnimationAPI.PlayAnimationName(baseLayer, loop);
+            ChromaAnimationAPI.PlayAnimationName(ANIMATION_PATH + "/" + name + ".chroma", loop);
 
             if (duration > 0)
                 _scheduledBackground = ExecutionPlan.Delay(duration, PlayBackground);

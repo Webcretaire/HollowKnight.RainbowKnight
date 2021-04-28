@@ -35,8 +35,9 @@ namespace RainbowKnight
             );
 
             _chromaHelper = new RainbowChromaHelper();
-            _chromaHelper.Start();
-
+            
+            if (!_chromaHelper.Start()) return; // There was an error at startup, don't register any hook
+            
             Log("Razer SDK init: " + RazerErrors.GetResultString(_chromaHelper.GetInitResult()));
 
             ModHooks.Instance.TakeHealthHook += OnTakeHealth;
@@ -178,17 +179,16 @@ namespace RainbowKnight
             _chromaHelper.PlayFullRed();
         }
 
-        // Uninitialize Razer's SDK if the game gracefully exits
-        private void OnApplicationQuit()
-        {
-            _chromaHelper.OnApplicationQuit();
-        }
-
-
         private int OnTakeHealth(int damage)
         {
             _chromaHelper.PlayRedRing();
             return damage;
+        }
+
+        // Uninitialize Razer's SDK if the game gracefully exits
+        private void OnApplicationQuit()
+        {
+            _chromaHelper.OnApplicationQuit();
         }
     }
 }
