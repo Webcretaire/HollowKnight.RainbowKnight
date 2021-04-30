@@ -132,7 +132,8 @@ namespace RainbowKnight
             return BooleanAnimationUpdate(
                 HeroController.instance.cState.bouncing ||
                 HeroController.instance.cState.doubleJumping ||
-                HeroController.instance.cState.dashing,
+                HeroController.instance.cState.dashing ||
+                HeroController.instance.cState.shroomBouncing,
                 "Double_Jumping",
                 _chromaHelper.PlayWhiteBars
             );
