@@ -170,11 +170,17 @@ namespace RainbowKnight
                 _chromaHelper.PlayBackground();
             }
         }
+
+        private static PlayMakerFSM DreamFSM()
+        {
+            return HeroController.instance.gameObject.LocateMyFSM("Dream Nail");
+        }
         
         private bool UpdateDreamNailChargeState()
         {
+            var state = DreamFSM().ActiveStateName;
             return BooleanAnimationUpdate(
-                HeroController.instance.gameObject.LocateMyFSM("Dream Nail").ActiveStateName.Contains("Charge"),
+                state.Contains("Charge") || state == "Slash Antic",
                 "Dream_Nail_charging",
                 _chromaHelper.PlayYellowDiskLoad
             );
@@ -182,8 +188,9 @@ namespace RainbowKnight
 
         private bool UpdateDreamNailSlashState()
         {
+            var state = DreamFSM().ActiveStateName;
             return BooleanAnimationUpdate(
-                HeroController.instance.gameObject.LocateMyFSM("Dream Nail").ActiveStateName == "Slash",
+                state == "Slash" || state == "Warp Effect" || state == "Set Antic",
                 "Dream_Nailing_slashing",
                 _chromaHelper.PlayYellowFlash
             );
