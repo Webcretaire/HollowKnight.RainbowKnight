@@ -155,6 +155,7 @@ namespace RainbowKnight
             if (UpdateCrystalDashFlyState()) return;
             if (UpdateCrystalDashLoadState()) return;
             if (UpdateSpellState()) return;
+            if (UpdateDreamNailState()) return;
             if (UpdateNailChargeState()) return;
 
             // Resuming the background should have the absolute lowest priority, which is why we don't resume it in
@@ -166,6 +167,15 @@ namespace RainbowKnight
                 _stateRequestsBackground = false;
                 _chromaHelper.PlayBackground();
             }
+        }
+
+        private bool UpdateDreamNailState()
+        {
+            return BooleanAnimationUpdate(
+                HeroController.instance.gameObject.LocateMyFSM("Dream Nail").ActiveStateName == "Slash",
+                "Dream_Nailing",
+                _chromaHelper.PlayWhiteBars
+            );
         }
 
         private void OnPlayerDead()
