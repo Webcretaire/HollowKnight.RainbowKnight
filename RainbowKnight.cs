@@ -35,9 +35,9 @@ namespace RainbowKnight
             );
 
             _chromaHelper = new RainbowChromaHelper();
-            
+
             if (!_chromaHelper.Start()) return; // There was an error at startup, don't register any hook
-            
+
             Log("Razer SDK init: " + RazerErrors.GetResultString(_chromaHelper.GetInitResult()));
 
             ModHooks.Instance.TakeHealthHook += OnTakeHealth;
@@ -45,6 +45,7 @@ namespace RainbowKnight
             ModHooks.Instance.ApplicationQuitHook += OnApplicationQuit;
             ModHooks.Instance.HeroUpdateHook += OnHeroUpdate;
             ModHooks.Instance.LanguageGetHook += OnLanguageGet;
+            ModHooks.Instance.SetPlayerBoolHook += OnSetPlayerBool;
 
             _chromaHelper.PlayBackground();
         }
@@ -117,15 +118,6 @@ namespace RainbowKnight
             );
         }
 
-        private bool UpdateBenchState()
-        {
-            return BooleanAnimationUpdate(
-                HeroController.instance.playerData.atBench,
-                "Benching",
-                _chromaHelper.PlayFullWhite
-            );
-        }
-
         private bool UpdateNailChargeState()
         {
             return BooleanAnimationUpdate(
@@ -146,6 +138,9 @@ namespace RainbowKnight
             );
         }
 
+        /**
+         * Updates for things I didn't find a cleaner trigger for (either a dedicated hook or an Int / Bool value) 
+         */
         private void OnHeroUpdate()
         {
             // Don't update things too frequently, we don't want to burn people's CPUs
@@ -161,7 +156,6 @@ namespace RainbowKnight
             if (UpdateCrystalDashLoadState()) return;
             if (UpdateSpellState()) return;
             if (UpdateNailChargeState()) return;
-            if (UpdateBenchState()) return;
 
             // Resuming the background should have the absolute lowest priority, which is why we don't resume it in
             // each `Update*` function directly, but only ask for it to be resumed (which might end up not being 
@@ -183,6 +177,16 @@ namespace RainbowKnight
         {
             _chromaHelper.PlayRedRing();
             return damage;
+        }
+
+        private void OnSetPlayerBool(string set, bool value)
+        {
+            BooleanAnimationUpdate(
+                set == "atBench",
+                "Benching",
+                _chromaHelper.PlayFullWhite
+            );
+            PlayerData.instance.SetBoolInternal(set, value);
         }
 
         // Uninitialize Razer's SDK if the game gracefully exits
