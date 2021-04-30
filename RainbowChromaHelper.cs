@@ -80,7 +80,7 @@ namespace RazerAPI
 
         public void PlayColouredRing()
         {
-            PlayAnimationAllDevices("ColouredRing", 5000, true);
+            PlayAnimationAllDevices("ColouredRing", 10000, true);
         }
 
         public void PlayRedRing()
@@ -101,6 +101,16 @@ namespace RazerAPI
         public void PlayFullWhite()
         {
             PlayAnimationAllDevices("FullWhite", 0, true);
+        }
+
+        public void PlayYellowDiskLoad()
+        {
+            PlayAnimationAllDevices("YellowDiskLoad", 10000, true);
+        }
+
+        public void PlayYellowFlash()
+        {
+            PlayAnimationAllDevices("YellowFlash", 1000);
         }
 
         private void PlayAnimationAllDevices(string name, int duration, bool loop = false)
