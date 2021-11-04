@@ -194,9 +194,9 @@ namespace ChromaSDK
     {
 
 #if X64
-        const string DLL_NAME = "CChromaEditorLibrary64";
+        const string DLL_NAME = "hollow_knight_Data/Managed/Mods/RainbowKnight/CChromaEditorLibrary64";
 #else
-        const string DLL_NAME = "CChromaEditorLibrary";
+        const string DLL_NAME = "hollow_knight_Data/Managed/Mods/RainbowKnight/CChromaEditorLibrary";
 #endif
 
 #region Data Structures

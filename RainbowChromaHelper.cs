@@ -1,4 +1,3 @@
-using System;
 using ChromaSDK;
 using Modding;
 using RainbowKnight;
@@ -7,7 +6,7 @@ namespace RazerAPI
 {
     public class RainbowChromaHelper : Loggable
     {
-        public const string ANIMATION_PATH = "hollow_knight_Data/Managed/Mods/RainbowKnight/Animations";
+        private const string ANIMATION_PATH = "hollow_knight_Data/Managed/Mods/RainbowKnight/Animations";
 
         private int _mResult;
 
@@ -20,8 +19,8 @@ namespace RazerAPI
 
         public bool Start()
         {
-            try
-            {
+            // try
+            // {
                 var appInfo = new APPINFOTYPE
                 {
                     Title = "RainbowKnight",
@@ -49,12 +48,12 @@ namespace RazerAPI
                         LogError("Failed to initialize Chroma! " + RazerErrors.GetResultString(_mResult));
                         return false;
                 }
-            }
-            catch (Exception e)
-            {
-                LogError("Error during Chroma Helper Start: " + e.Message);
-                return false;
-            }
+            // }
+            // catch (Exception e)
+            // {
+            //     LogError("Error during Chroma Helper Start: " + e.Message);
+            //     return false;
+            // }
         }
 
         public void OnApplicationQuit()

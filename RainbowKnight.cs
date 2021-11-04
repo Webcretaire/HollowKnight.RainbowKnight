@@ -29,11 +29,6 @@ namespace RainbowKnight
         {
             Log("Start RainbowKnight Init");
 
-            Environment.SetEnvironmentVariable(
-                "PATH",
-                Environment.GetEnvironmentVariable("PATH") + ";hollow_knight_Data\\Managed\\Mods\\RainbowKnight"
-            );
-
             _chromaHelper = new RainbowChromaHelper();
 
             if (!_chromaHelper.Start()) return; // There was an error at startup, don't register any hook
@@ -61,8 +56,7 @@ namespace RainbowKnight
         {
             var stateActive = _animState.ContainsKey(state) && _animState[state];
 
-            switch (condition)
-            {
+            switch (condition) {
                 case true when !stateActive:
                     LogDebug("Triggering " + state + " animation");
                     _animState[state] = true;
@@ -163,8 +157,7 @@ namespace RainbowKnight
             // Resuming the background should have the absolute lowest priority, which is why we don't resume it in
             // each `Update*` function directly, but only ask for it to be resumed (which might end up not being 
             // necessary if another animation needs to run instead)
-            if (_stateRequestsBackground && !_animState.ContainsValue(true))
-            {
+            if (_stateRequestsBackground && !_animState.ContainsValue(true)) {
                 LogDebug("Effectively resuming background animation");
                 _stateRequestsBackground = false;
                 _chromaHelper.PlayBackground();
@@ -175,7 +168,7 @@ namespace RainbowKnight
         {
             return HeroController.instance.gameObject.LocateMyFSM("Dream Nail");
         }
-        
+
         private bool UpdateDreamNailChargeState()
         {
             var state = DreamFSM().ActiveStateName;
