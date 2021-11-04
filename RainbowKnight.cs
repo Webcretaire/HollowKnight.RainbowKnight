@@ -35,12 +35,12 @@ namespace RainbowKnight
 
             Log("Razer SDK init: " + RazerErrors.GetResultString(_chromaHelper.GetInitResult()));
 
-            ModHooks.Instance.TakeHealthHook += OnTakeHealth;
-            ModHooks.Instance.BeforePlayerDeadHook += OnPlayerDead;
-            ModHooks.Instance.ApplicationQuitHook += OnApplicationQuit;
-            ModHooks.Instance.HeroUpdateHook += OnHeroUpdate;
-            ModHooks.Instance.LanguageGetHook += OnLanguageGet;
-            ModHooks.Instance.SetPlayerBoolHook += OnSetPlayerBool;
+            ModHooks.TakeHealthHook += OnTakeHealth;
+            ModHooks.BeforePlayerDeadHook += OnPlayerDead;
+            ModHooks.ApplicationQuitHook += OnApplicationQuit;
+            ModHooks.HeroUpdateHook += OnHeroUpdate;
+            ModHooks.LanguageGetHook += OnLanguageGet;
+            ModHooks.SetPlayerBoolHook += OnSetPlayerBool;
 
             _chromaHelper.PlayBackground();
         }
@@ -73,7 +73,7 @@ namespace RainbowKnight
             return false;
         }
 
-        private string OnLanguageGet(string key, string sheet)
+        private string OnLanguageGet(string key, string sheet, string orig)
         {
             // This is a "hack" to detect when we're back to the main menu, so that we can reset all lighting
             if (key == "MAIN_OPTIONS")
@@ -200,7 +200,7 @@ namespace RainbowKnight
             return damage;
         }
 
-        private void OnSetPlayerBool(string set, bool value)
+        private bool OnSetPlayerBool(string set, bool value)
         {
             BooleanAnimationUpdate(
                 set == "atBench",
@@ -208,6 +208,8 @@ namespace RainbowKnight
                 _chromaHelper.PlayFullWhite
             );
             PlayerData.instance.SetBoolInternal(set, value);
+
+            return value;
         }
 
         // Uninitialize Razer's SDK if the game gracefully exits

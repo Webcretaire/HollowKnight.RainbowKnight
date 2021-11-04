@@ -193,11 +193,7 @@ namespace ChromaSDK
     public class ChromaAnimationAPI
     {
 
-#if X64
-        const string DLL_NAME = "hollow_knight_Data/Managed/Mods/RainbowKnight/CChromaEditorLibrary64";
-#else
-        const string DLL_NAME = "hollow_knight_Data/Managed/Mods/RainbowKnight/CChromaEditorLibrary";
-#endif
+const string DLL_NAME = "Hollow Knight_Data/Managed/Mods/RainbowKnight/CChromaEditorLibrary64.dll";
 
 #region Data Structures
 

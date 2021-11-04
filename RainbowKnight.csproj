@@ -9,7 +9,7 @@
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>RainbowKnight</RootNamespace>
         <AssemblyName>RainbowKnight</AssemblyName>
-        <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -33,20 +33,20 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
+          <HintPath>..\..\..\..\..\..\Program Files\Hollow Knight 1.5\Hollow Knight_Data\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="PlayMaker, Version=1.6.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\PlayMaker.dll</HintPath>
+          <HintPath>..\..\..\..\..\..\Program Files\Hollow Knight 1.5\Hollow Knight_Data\Managed\PlayMaker.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
         <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.dll</HintPath>
+          <HintPath>..\..\..\..\..\..\Program Files\Hollow Knight 1.5\Hollow Knight_Data\Managed\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>..\..\..\..\..\..\Program Files\Hollow Knight 1.5\Hollow Knight_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>

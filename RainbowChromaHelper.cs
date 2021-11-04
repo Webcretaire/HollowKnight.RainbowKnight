@@ -6,7 +6,7 @@ namespace RazerAPI
 {
     public class RainbowChromaHelper : Loggable
     {
-        private const string ANIMATION_PATH = "hollow_knight_Data/Managed/Mods/RainbowKnight/Animations";
+        private const string ANIMATION_PATH = "Hollow Knight_Data/Managed/Mods/RainbowKnight/Animations";
 
         private int _mResult;
 
